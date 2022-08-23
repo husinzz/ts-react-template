@@ -1,9 +1,19 @@
 import React from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Index from "./pages";
+import NotFound from "./pages/404";
 
 function App() {
   return (
     <>
-      <h1 className="text-red-600">If im red, thats means im working fine</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+
+          <Route path="404" element={<NotFound />} />
+          <Route path="*" element={<Navigate to={'404'} />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
