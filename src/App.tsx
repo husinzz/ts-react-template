@@ -1,21 +1,26 @@
 import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Index from "./pages";
 import NotFound from "./pages/404";
 
+const Router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Index />,
+    errorElement: <NotFound />,
+    children: [
+
+    ],
+  },
+]);
+
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-
-          <Route path="404" element={<NotFound />} />
-          <Route path="*" element={<Navigate to={'404'} />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <React.StrictMode>
+      <RouterProvider router={Router} />
+    </React.StrictMode>
   );
 }
+
 
 export default App;
